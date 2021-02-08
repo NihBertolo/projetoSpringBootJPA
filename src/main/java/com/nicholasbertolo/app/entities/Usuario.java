@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,32 +13,28 @@ import javax.persistence.OneToMany;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-public class User implements Serializable {
+public class Usuario implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String name;
-	
-	@Column(unique = true)
 	private String cpf;
-	
 	private String email;
 	private String phone;
-	private String password;
 	private String endereco;
+	private String password;
 	
 	@JsonIgnore
 	@OneToMany(mappedBy = "client")
 	private List<Pedido> pedido = new ArrayList<>();
 	
 	
-	public User() {	
+	public Usuario() {	
 	}
 
-	public User(Long id, String name, String cpf, String email, String phone, String endereco, String password) {
-		super();
+	public Usuario(Long id, String name, String cpf, String email, String phone, String endereco, String password) {
 		this.id = id;
 		this.name = name;
 		this.cpf = cpf;
@@ -100,6 +95,14 @@ public class User implements Serializable {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
+	public String getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(String endereco) {
+		this.endereco = endereco;
+	}
 
 	@Override
 	public int hashCode() {
@@ -117,7 +120,7 @@ public class User implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		User other = (User) obj;
+		Usuario other = (Usuario) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -125,14 +128,5 @@ public class User implements Serializable {
 			return false;
 		return true;
 	}
-
-	public String getEndereco() {
-		return endereco;
-	}
-
-	public void setEndereco(String endereco) {
-		this.endereco = endereco;
-	}
-	
 	
 }

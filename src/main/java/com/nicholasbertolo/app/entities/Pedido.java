@@ -35,7 +35,7 @@ public class Pedido implements Serializable {
 	
 	@ManyToOne
 	@JoinColumn(name = "client_id")
-	private User client;
+	private Usuario client;
 	
 	private String enderecoCliente;
 	
@@ -48,7 +48,7 @@ public class Pedido implements Serializable {
 	public Pedido() {
 	}
 
-	public Pedido(Long id, Instant moment, PedidoStatus pedidoStatus, User client) {
+	public Pedido(Long id, Instant moment, PedidoStatus pedidoStatus, Usuario client) {
 		this.id = id;
 		this.setMoment(moment);
 		setPedidoStatus(pedidoStatus);
@@ -64,11 +64,11 @@ public class Pedido implements Serializable {
 		this.id = id;
 	}
 
-	public User getClient() {
+	public Usuario getClient() {
 		return client;
 	}
 
-	public void setClient(User client) {
+	public void setClient(Usuario client) {
 		this.client = client;
 	}
 	

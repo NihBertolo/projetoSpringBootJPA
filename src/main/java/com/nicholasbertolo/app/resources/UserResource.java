@@ -15,30 +15,30 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.nicholasbertolo.app.entities.User;
+import com.nicholasbertolo.app.entities.Usuario;
 import com.nicholasbertolo.app.services.UserService;
 
 @RestController
-@RequestMapping(value = "/users")
+@RequestMapping(value = "/usuarios")
 public class UserResource {
 
 	@Autowired
 	private UserService service;
 	
 	@GetMapping
-	public ResponseEntity<List<User>> findAll() {
-		List<User> list = service.findAll();
+	public ResponseEntity<List<Usuario>> findAll() {
+		List<Usuario> list = service.findAll();
 		return ResponseEntity.ok().body(list);	
 	}
 	
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<User> findById(@PathVariable Long id) {
-		User obj = service.findById(id);
+	public ResponseEntity<Usuario> findById(@PathVariable Long id) {
+		Usuario obj = service.findById(id);
 		return ResponseEntity.ok().body(obj);
 	}
 	
 	@PostMapping
-	public ResponseEntity<User> insert(@RequestBody User obj) {
+	public ResponseEntity<Usuario> insert(@RequestBody Usuario obj) {
 		obj = service.insert(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
 											 .path("/{id}").buildAndExpand(obj.getId()).toUri();
@@ -52,7 +52,7 @@ public class UserResource {
 	}
 	
 	@PutMapping(value = "/{id}")
-	public ResponseEntity<User> update(@PathVariable Long id, @RequestBody User obj) {
+	public ResponseEntity<Usuario> update(@PathVariable Long id, @RequestBody Usuario obj) {
 		obj = service.update(id, obj);
 		return ResponseEntity.ok().body(obj);
 	}

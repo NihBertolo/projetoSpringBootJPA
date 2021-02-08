@@ -10,7 +10,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
-import com.nicholasbertolo.app.entities.User;
+import com.nicholasbertolo.app.entities.Usuario;
 import com.nicholasbertolo.app.repositories.UserRepository;
 import com.nicholasbertolo.app.services.exceptions.DatabaseException;
 import com.nicholasbertolo.app.services.exceptions.ResourceNotFoundException;
@@ -21,16 +21,16 @@ public class UserService {
 	@Autowired
 	private UserRepository userRepository;
 	
-	public List<User> findAll() {
+	public List<Usuario> findAll() {
 		return userRepository.findAll();
 	}
 	
-	public User findById(Long id) {
-		Optional<User> obj = userRepository.findById(id);
+	public Usuario findById(Long id) {
+		Optional<Usuario> obj = userRepository.findById(id);
 		return obj.orElseThrow(() -> new ResourceNotFoundException(id));
 	}
 	
-	public User insert(User obj) {
+	public Usuario insert(Usuario obj) {
 		return userRepository.save(obj);
 	}
 	
@@ -44,9 +44,9 @@ public class UserService {
 		}
 	}
 	
-	public User update(Long id, User obj) {
+	public Usuario update(Long id, Usuario obj) {
 		try {
-		User entity = userRepository.getOne(id);
+		Usuario entity = userRepository.getOne(id);
 		updateData(entity, obj);
 		return userRepository.save(entity);
 		} catch(EntityNotFoundException e) {
@@ -54,7 +54,7 @@ public class UserService {
 		}
 	}
 
-	private void updateData(User entity, User obj) {
+	private void updateData(Usuario entity, Usuario obj) {
 		entity.setName(obj.getName());
 		entity.setEmail(obj.getEmail());
 		entity.setPhone(obj.getPhone());

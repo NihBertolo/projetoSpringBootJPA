@@ -17,6 +17,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 public class Produto implements Serializable {
 	private static final long serialVersionUID = 1L;
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -36,7 +37,6 @@ public class Produto implements Serializable {
 	}
 
 	public Produto(Long id, String name, String description, Double price, String imgUrl, Categoria categoria) {
-		super();
 		this.id = id;
 		this.name = name;
 		this.description = description;

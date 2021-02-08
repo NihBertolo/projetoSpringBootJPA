@@ -13,7 +13,7 @@ import com.nicholasbertolo.app.entities.ItemPedido;
 import com.nicholasbertolo.app.entities.Pagamento;
 import com.nicholasbertolo.app.entities.Pedido;
 import com.nicholasbertolo.app.entities.Produto;
-import com.nicholasbertolo.app.entities.User;
+import com.nicholasbertolo.app.entities.Usuario;
 import com.nicholasbertolo.app.entities.enums.PedidoStatus;
 import com.nicholasbertolo.app.repositories.CategoriaRepository;
 import com.nicholasbertolo.app.repositories.ItemPedidoRepository;
@@ -43,11 +43,11 @@ public class TestConfig implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 		
-		User u1 = new User(null, "Maria Brown", "maria@gmail.com", "408.235.296-02", "(19) 98525-0326", "Rua Alferes Franco, 208, Limeira-SP", "123456");
-		User u2 = new User(null, "Alex Green", "alex@gmail.com", "543.274.396-09", "(19) 98356-3169", "Rua General Rondon, 915, Limeira-SP", "123456"); 
-		User u3 = new User(null, "Marley Red", "marley@gmail.com", "154.289.429-05", "(11) 92154-9526","Rua 13 de Maio, 845, Limeira-SP", "654321");
-		User u4 = new User(null, "Bob Gray", "bob@gmail.com", "255.255.025-04", "(15) 98245-9316","Rua General Osório, 892, Campinas-SP", "542612");
-		User u5 = new User(null, "John White", "johnw@gmail.com", "313.256.932-13", "(19) 98215-2952","Av. Papa Pio XII, 350, Campinas-SP", "572165");
+		Usuario u1 = new Usuario(null, "Maria Brown", "maria@gmail.com", "408.235.296-02", "(19) 98525-0326", "Rua Alferes Franco, 208, Limeira-SP", "123456");
+		Usuario u2 = new Usuario(null, "Alex Green", "alex@gmail.com", "543.274.396-09", "(19) 98356-3169", "Rua General Rondon, 915, Limeira-SP", "123456"); 
+		Usuario u3 = new Usuario(null, "Marley Red", "marley@gmail.com", "154.289.429-05", "(11) 92154-9526","Rua 13 de Maio, 845, Limeira-SP", "654321");
+		Usuario u4 = new Usuario(null, "Bob Gray", "bob@gmail.com", "255.255.025-04", "(15) 98245-9316","Rua General Osório, 892, Campinas-SP", "542612");
+		Usuario u5 = new Usuario(null, "John White", "johnw@gmail.com", "313.256.932-13", "(19) 98215-2952","Av. Papa Pio XII, 350, Campinas-SP", "572165");
 		
 		Categoria c1 = new Categoria(null, "Hardware");
 		Categoria c2 = new Categoria(null, "Televisões");
