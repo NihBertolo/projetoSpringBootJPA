@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.nicholasbertolo.app.entities.Categoria;
 import com.nicholasbertolo.app.entities.Produto;
 import com.nicholasbertolo.app.services.ProdutoService;
 
