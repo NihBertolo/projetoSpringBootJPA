@@ -20,27 +20,30 @@ public class Usuario implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String name;
-	private String cpf;
 	private String email;
 	private String phone;
-	private String endereco;
+	private String cpf;
+	
+	@JsonIgnore
 	private String password;
 	
 	@JsonIgnore
 	@OneToMany(mappedBy = "client")
 	private List<Pedido> pedido = new ArrayList<>();
 	
+	@JsonIgnore
+	@OneToMany(mappedBy = "client") 
+	private List<Endereco> endereco = new ArrayList<>();
 	
 	public Usuario() {	
 	}
 
-	public Usuario(Long id, String name, String cpf, String email, String phone, String endereco, String password) {
+	public Usuario(Long id, String name, String email, String phone, String cpf, String password) {
 		this.id = id;
 		this.name = name;
-		this.cpf = cpf;
 		this.email = email;
 		this.phone = phone;
-		this.endereco = endereco;
+		this.cpf = cpf;
 		this.password = password;
 	}
 
@@ -59,14 +62,6 @@ public class Usuario implements Serializable {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
-	public String getCpf() {
-		return cpf;
-	}
-
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
-	}
 
 	public String getEmail() {
 		return email;
@@ -83,6 +78,14 @@ public class Usuario implements Serializable {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
+	
+	public String getCpf() {
+		return cpf;
+	}
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
 
 	public String getPassword() {
 		return password;
@@ -92,16 +95,12 @@ public class Usuario implements Serializable {
 		return pedido;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
-	
-	public String getEndereco() {
+	public List<Endereco> getEnderecos() {
 		return endereco;
 	}
-
-	public void setEndereco(String endereco) {
-		this.endereco = endereco;
+	
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	@Override

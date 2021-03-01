@@ -37,7 +37,9 @@ public class Pedido implements Serializable {
 	@JoinColumn(name = "client_id")
 	private Usuario client;
 	
-	private String enderecoCliente;
+	@ManyToOne
+	@JoinColumn(name = "endereco_entrega_id")
+	private Endereco enderecoEntrega;
 	
 	@OneToOne(mappedBy = "pedido", cascade = CascadeType.ALL)
 	private Pagamento pagamento;
@@ -48,12 +50,12 @@ public class Pedido implements Serializable {
 	public Pedido() {
 	}
 
-	public Pedido(Long id, Instant moment, PedidoStatus pedidoStatus, Usuario client) {
+	public Pedido(Long id, Instant moment, PedidoStatus pedidoStatus, Usuario client, Endereco enderecoEntrega) {
 		this.id = id;
 		this.setMoment(moment);
 		setPedidoStatus(pedidoStatus);
 		this.client = client;
-		this.enderecoCliente = client.getEndereco();
+		this.enderecoEntrega = enderecoEntrega;
 	}
 
 	public Long getId() {
@@ -91,6 +93,23 @@ public class Pedido implements Serializable {
 	public void setPagamento(Pagamento pagamento) {
 		this.pagamento = pagamento;
 	}
+	
+	public Instant getMoment() {
+		return moment;
+	}
+
+	public void setMoment(Instant moment) {
+		this.moment = moment;
+	}
+
+	public Endereco getEnderecoEntrega() {
+		return enderecoEntrega;
+	}
+
+	public void setEnderecoEntrega(Endereco enderecoEntrega) {
+		this.enderecoEntrega = enderecoEntrega;
+	}
+	
 
 	public Double getTotal() {
 		Double soma = 0.0;
@@ -123,18 +142,6 @@ public class Pedido implements Serializable {
 		} else if (!id.equals(other.id))
 			return false;
 		return true;
-	}
-
-	public Instant getMoment() {
-		return moment;
-	}
-
-	public void setMoment(Instant moment) {
-		this.moment = moment;
-	}
-
-	public String getEnderecoCliente() {
-		return client.getEndereco();
 	}
 	
 }

@@ -1,7 +1,9 @@
 package com.nicholasbertolo.app.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Entity;
@@ -9,7 +11,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -26,9 +29,12 @@ public class Produto implements Serializable {
 	private Double price;
 	private String imgUrl;
 	
-	@ManyToOne
-	@JoinColumn(name = "categoria_id")
-	private Categoria categoria;
+	@JsonIgnore
+	@ManyToMany
+	@JoinTable(name = "produto_categoria",
+			   joinColumns = @JoinColumn(name = "produto_id"),
+			   inverseJoinColumns = @JoinColumn(name = "categoria_id"))
+	private List<Categoria> categoria = new ArrayList<>();
 	
 	@OneToMany(mappedBy = "id.produto")
 	private Set<ItemPedido> items = new HashSet<>();
@@ -36,13 +42,12 @@ public class Produto implements Serializable {
 	public Produto () {
 	}
 
-	public Produto(Long id, String name, String description, Double price, String imgUrl, Categoria categoria) {
+	public Produto(Long id, String name, String description, Double price, String imgUrl) {
 		this.id = id;
 		this.name = name;
 		this.description = description;
 		this.price = price;
 		this.imgUrl = imgUrl;
-		this.categoria = categoria;
 	}
 
 	public Long getId() {
@@ -85,11 +90,11 @@ public class Produto implements Serializable {
 		this.imgUrl = imgUrl;
 	}
 
-	public Categoria getCategoria() {
+	public List<Categoria> getCategoria() {
 		return categoria;
 	}
 
-	public void setCategoria(Categoria categoria) {
+	public void setCategoria(List<Categoria> categoria) {
 		this.categoria = categoria;
 	}
 	
